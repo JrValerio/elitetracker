@@ -1,6 +1,7 @@
 {
   "name": "elitetracker",
   "version": "0.0.0",
+  "type": "module",
   "description": "API para o Elite Tracker",
   "main": "index.js",
   "scripts": {
@@ -19,6 +20,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3"
   },
