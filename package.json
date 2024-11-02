@@ -6,8 +6,18 @@
   "scripts": {
     "dev": "tsx watch src/server.ts"
   },
-  "keywords": ["api", "express", "nodejs", "elitetracker", "elitetracker-api", "typescript"],
+  "keywords": [
+    "api",
+    "express",
+    "nodejs",
+    "elitetracker",
+    "elitetracker-api",
+    "typescript"
+  ],
   "author": "Amaro V S Junior <amarovsjr81@gmail.com>",
   "url": "https://github.com/jrvalerio",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
 }
