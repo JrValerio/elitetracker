@@ -1,12 +1,13 @@
 {
   "name": "elitetracker",
-  "version": "1.0.0",
+  "version": "0.0.0",
+  "description": "API para o Elite Tracker",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx watch src/server.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "keywords": ["api", "express", "nodejs", "elitetracker", "elitetracker-api", "typescript"],
+  "author": "Amaro V S Junior <amarovsjr81@gmail.com>",
+  "url": "https://github.com/jrvalerio",
+  "license": "ISC"
 }
