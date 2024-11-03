@@ -15,7 +15,7 @@ const HabitSchema = new Schema(
     timestamps: true,
   }
 );
-export const HabitModel = {
+export const habitModel = {
   name: 'Habit',
   schema: HabitSchema,
   model: model('Habit', HabitSchema),
