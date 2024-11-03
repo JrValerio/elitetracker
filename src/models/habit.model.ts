@@ -6,13 +6,15 @@ const HabitSchema = new Schema(
       type: String,
       required: true,
     },
+    isCompleted: {
+      type: [Date],
+    },
   },
   {
     versionKey: false,
     timestamps: true,
   }
 );
-
 export const HabitModel = {
   name: 'Habit',
   schema: HabitSchema,
