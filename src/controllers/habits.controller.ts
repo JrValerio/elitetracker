@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import mongoose from 'mongoose';
 import { z } from 'zod';
 
 import { habitModel } from '../models/habit.model';
@@ -64,5 +65,20 @@ export class HabitsController {
   index = async (_req: Request, res: Response) => {
     const habits = await habitModel.model.find().sort({ name: 1 });
     return res.json(habits);
+  };
+
+  delete = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid ID format' });
+    }
+
+    const deletedHabit = await habitModel.model.findByIdAndDelete(id);
+    if (!deletedHabit) {
+      return res.status(404).json({ error: 'Habit not found' });
+    }
+
+    return res.status(204).json();
   };
 }

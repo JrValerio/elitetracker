@@ -24,3 +24,7 @@ routes.get('/habits', (req: Request, res: Response) => {
 routes.post('/habits', (req: Request, res: Response) => {
   habitsController.create(req, res);
 });
+
+routes.delete('/habits/:id', (req: Request, res: Response) => {
+  habitsController.delete(req, res);
+});
