@@ -17,4 +17,6 @@ routes.get('/', (req: Request, res: Response) => {
   });
 });
 
-routes.post('/habits', habitsController.create);
+routes.post('/habits', (req: Request, res: Response) => {
+  habitsController.create(req, res);
+});
