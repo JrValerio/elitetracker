@@ -8,13 +8,13 @@ export async function setupMongo() {
       console.log('Already connected to MongoDB.');
       return;
     }
-    console.log('Connecting to MongoDB...');
+    console.log('⏳ Connecting to MongoDB...');
     if (!process.env.MONGO_URI) {
       throw new Error('MONGO_URI is not defined');
     }
     await mongoose.connect(mongoURI);
-    console.log('Connected to MongoDB successfully');
+    console.log('✅ Connected to MongoDB successfully');
   } catch (error) {
-    console.log('Error connecting to MongoDB', error);
+    console.log('❌ No connecting to MongoDB', error);
   }
 }
