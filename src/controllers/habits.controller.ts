@@ -29,6 +29,10 @@ export class HabitsController {
         sucess: true,
         data: {
           name: newHabit.name,
+          complitedDates: newHabit.complitedDates,
+          _id: newHabit._id,
+          createdAt: newHabit.createdAt,
+          updatedAt: newHabit.updatedAt,
         },
       });
     } catch (error) {
