@@ -61,4 +61,8 @@ export class HabitsController {
       });
     }
   };
+  index = async (_req: Request, res: Response) => {
+    const habits = await habitModel.model.find().sort({ name: 1 });
+    return res.json(habits);
+  };
 }
