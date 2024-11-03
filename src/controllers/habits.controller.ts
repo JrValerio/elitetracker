@@ -3,6 +3,8 @@ import { z } from 'zod';
 
 import { habitModel } from '../models/habit.model';
 import { createHabitSchema } from '../schemas/schema';
+import { buildValidationErrorMessage } from '../utils/build-validation-error-message-util';
+
 export class HabitsController {
   create = async (req: Request, res: Response) => {
     try {
@@ -14,7 +16,12 @@ export class HabitsController {
         { collation: { locale: 'en', strength: 2 } }
       );
       if (findHabit) {
-        return res.status(400).json({ message: '❗ Habit already exists' });
+        return res.status(400).json({
+          success: false,
+          error: {
+            message: '❗ Habit already exists',
+          },
+        });
       }
 
       const newHabit = await habitModel.model.create({
@@ -26,10 +33,10 @@ export class HabitsController {
       });
 
       return res.status(201).json({
-        sucess: true,
+        success: true,
         data: {
           name: newHabit.name,
-          complitedDates: newHabit.complitedDates,
+          completedDates: newHabit.completedDates,
           _id: newHabit._id,
           createdAt: newHabit.createdAt,
           updatedAt: newHabit.updatedAt,
@@ -37,34 +44,21 @@ export class HabitsController {
       });
     } catch (error) {
       if (error instanceof z.ZodError) {
-        return res.status(400).json({
+        return res.status(422).json({
           success: false,
           error: {
-            issues: error.errors.map((err) => {
-              if (
-                err.code === 'invalid_type' &&
-                'expected' in err &&
-                'received' in err
-              ) {
-                return {
-                  code: err.code,
-                  expected: err.expected,
-                  received: err.received,
-                  path: err.path,
-                  message: err.message,
-                };
-              }
-              return {
-                code: err.code,
-                path: err.path,
-                message: err.message,
-              };
-            }),
-            name: 'ZodError',
+            issues: buildValidationErrorMessage(error.issues),
+            name: 'zodError',
           },
         });
       }
-      return res.status(500).json({ message: '❗ Internal Server Error' });
+
+      return res.status(500).json({
+        success: false,
+        error: {
+          name: 'internalError',
+        },
+      });
     }
   };
 }
