@@ -28,3 +28,7 @@ routes.post('/habits', (req: Request, res: Response) => {
 routes.delete('/habits/:id', (req: Request, res: Response) => {
   habitsController.delete(req, res);
 });
+
+routes.patch('/habits/:id/toggle', (req: Request, res: Response) => {
+  habitsController.toggle(req, res);
+});
