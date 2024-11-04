@@ -97,9 +97,15 @@ export class HabitsController {
 
     const today = dayjs().startOf('day');
 
-    const isCompletedToday = habit.completedDates.some((date) =>
-      today.isSame(date, 'day')
-    );
+    const isCompletedToday = habit.completedDates.some((date) => {
+      if (date instanceof Date) {
+        return today.isSame(date, 'day');
+      } else {
+        const dateAsString = date.toString();
+        const dateAsDayjs = dayjs(dateAsString);
+        return today.isSame(dateAsDayjs, 'day');
+      }
+    });
 
     if (isCompletedToday) {
       await habitModel.model.updateOne(
