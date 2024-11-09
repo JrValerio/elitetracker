@@ -1,11 +1,13 @@
 import { Router, Request, Response } from 'express';
 
 import packageJson from '../../package.json';
+import { FocusTimeController } from '../controllers/focus-time.controller';
 import { HabitsController } from '../controllers/habits.controller';
 
 export const routes = Router();
 
 const habitsController = new HabitsController();
+const focusTimeController = new FocusTimeController();
 
 routes.get('/', (req: Request, res: Response) => {
   const { name, description, version } = packageJson;
@@ -31,4 +33,8 @@ routes.delete('/habits/:id', (req: Request, res: Response) => {
 
 routes.patch('/habits/:id/toggle', (req: Request, res: Response) => {
   habitsController.toggle(req, res);
+});
+
+routes.post('/focus-time', (req: Request, res: Response) => {
+  focusTimeController.create(req, res);
 });
