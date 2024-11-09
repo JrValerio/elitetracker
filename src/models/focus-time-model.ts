@@ -16,8 +16,5 @@ const FocusTimeSchema = new Schema(
     timestamps: true,
   }
 );
-export const FocusTimeModel = {
-  name: 'FocusTime',
-  schema: FocusTimeSchema,
-  model: model('FocusTime', FocusTimeSchema),
-};
+
+export const FocusTimeModel = model('FocusTime', FocusTimeSchema);
